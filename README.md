@@ -1,2 +1,1 @@
-# todo-list
- A Firebase/React JS Webapp
+# A Firebase/React JS Webapp
