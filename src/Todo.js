@@ -7,7 +7,7 @@ const Todo = ({td, handleDelete}) => {
     <div>
     {/*<h1>{td.todo}</h1> */}
 
-    <Card  bg="light" body>
+    <Card className='mb-3' bg="light" body>
        {td.todo}
        <MdDelete className="btn-delete" size={28} onClick={() => {handleDelete(td.id)}}/>
     </Card>

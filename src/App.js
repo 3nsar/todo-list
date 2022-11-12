@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react'
 import {db} from "./firebase"
-import { addDoc, collection, getDocs, doc, deleteDoc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, getDocs, doc, deleteDoc, onSnapshot, query } from "firebase/firestore";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -25,11 +25,23 @@ function App() {
   }
 
 
-  useEffect(() =>     
-     onSnapshot(collection(db, "todos"), (snapshot) =>
-        setTodo(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+{/*useEffect(() =>     
+ onSnapshot(collection(db, "todos"), (snapshot) =>
+    setTodo(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))) 
       
-  ),[] );
+  ),[] ); */}
+
+  useEffect(() => {
+    const q = query(collection(db, 'todos'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let todosArr = [];
+      querySnapshot.forEach((doc) => {
+        todosArr.push({ ...doc.data(), id: doc.id });
+      });
+      setTodo(todosArr);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <Container >
