@@ -9,7 +9,7 @@ const Todo = ({td, handleDelete}) => {
 
     <Card className='mb-3' bg="light" body>
        {td.todo}
-       <MdDelete className="btn-delete" size={28} onClick={() => {handleDelete(td.id)}}/>
+       <MdDelete className="btn-delete ms-3" size={28} onClick={() => {handleDelete(td.id)}}/>
     </Card>
     </div>
   )
