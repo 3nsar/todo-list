@@ -8,8 +8,10 @@ const Todo = ({td, handleDelete}) => {
     {/*<h1>{td.todo}</h1> */}
 
     <Card className='mb-3' bg="light" body>
-       {td.todo}
+      <div className="d-flex justify-content-between">
+       <h3>{td.todo}</h3>
        <MdDelete className="btn-delete ms-3" size={28} onClick={() => {handleDelete(td.id)}}/>
+      </div>
     </Card>
     </div>
   )
